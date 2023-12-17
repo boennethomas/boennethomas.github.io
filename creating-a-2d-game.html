@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creating Your First Game in Unity</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tutorials.html">Tutorials</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Creating Your First 2D Game in Unity</h1>
+        <article>
+            <h2>Introduction</h2>
+            <p>This tutorial will guide you through creating a basic 2D platformer game in Unity. You'll learn about Unity's interface, basic scripting, and game mechanics.</p>
+        
+            <h3>Step 1: Setting Up Your Project</h3>
+            <p>Create a new project in Unity Hub, select the 2D template, and name your project 'First2DGame'.</p>
+        
+            <h3>Step 2: Designing the Game Scene</h3>
+            <p>The game scene is where you'll design your game world. Add a sprite for the ground and a player character.</p>
+        
+            <h3>Step 3: Scripting Player Movement</h3>
+            <p>We'll write a simple script to control the player. Attach a new script named 'PlayerController' to your player sprite.</p>
+        
+            <pre><code>// PlayerController.cs
+            using UnityEngine;
+        
+            public class PlayerController : MonoBehaviour {
+                public float moveSpeed = 5f; // Speed of the player
+                public Rigidbody2D rb; // Reference to the Rigidbody2D component
+                private Vector2 moveDirection; // The direction of movement
+        
+                void Update() {
+                    ProcessInputs(); // Handle user inputs
+                }
+        
+                void FixedUpdate() {
+                    Move(); // Apply movement
+                }
+        
+                void ProcessInputs() {
+                    float moveX = Input.GetAxisRaw("Horizontal"); // Get horizontal input
+                    moveDirection = new Vector2(moveX, 0).normalized; // Set the move direction
+                }
+        
+                void Move() {
+                    rb.velocity = new Vector2(moveDirection.x * moveSpeed, rb.velocity.y); // Move the player
+                }
+            }</code></pre>
+            <p>This script enables the player to move left or right using the arrow keys. 'Input.GetAxisRaw("Horizontal")' gets the player's horizontal input, and 'rb.velocity' applies movement to the player.</p>
+        
+            <h3>Step 4: Adding Jump Mechanics</h3>
+            <p>Let's enhance the player's movement with a jump ability.</p>
+            <pre><code>public float jumpForce = 15f; // Jump force
+            public bool isGrounded = false; // Is the player on the ground?
+        
+            void Update() {
+                if (Input.GetButtonDown("Jump") && isGrounded) {
+                    rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse); // Add an upward force
+                }
+            }</code></pre>
+            <p>This code allows the player to jump by pressing the space bar. It checks if the player is on the ground ('isGrounded') to prevent mid-air jumps.</p>
+            
+            <h3>Step 5: Adding Obstacles</h3>
+<p>Obstacles add challenges to your game. Let's add a simple obstacle.</p>
+<ul>
+    <li>In the Unity Editor, add another sprite to act as an obstacle.</li>
+    <li>Position it in your scene where it can challenge the player.</li>
+    <li>Add a Collider component to it (like a BoxCollider2D) so it can interact with the player.</li>
+</ul>
+<p>When the player collides with the obstacle, you can trigger a game over or reduce the player's health.</p>
+<h3>Step 6: Creating Collectibles</h3>
+<p>Collectibles can be coins, stars, or any item that the player can collect.</p>
+<ul>
+    <li>Add a new sprite to your scene to represent the collectible.</li>
+    <li>Give it a Collider component, set to 'Is Trigger' so the player can pass through it.</li>
+</ul>
+<pre><code>void OnTriggerEnter2D(Collider2D other) {
+    if (other.gameObject.CompareTag("Player")) {
+        // Add score or perform an action
+        Destroy(gameObject); // Destroy the collectible
+    }
+}</code></pre>
+<p>This script will destroy the collectible when the player touches it, potentially increasing the player's score.</p>
+<h3>Step 7: Implementing Game Mechanics</h3>
+<p>Add basic game mechanics like scoring and a game over condition.</p>
+<pre><code>public int score = 0;
+
+void OnTriggerEnter2D(Collider2D other) {
+    if (other.gameObject.CompareTag("Collectible")) {
+        score++;
+        Destroy(other.gameObject);
+    } else if (other.gameObject.CompareTag("Obstacle")) {
+        // Game over logic
+    }
+}</code></pre>
+<p>This script increases the score when collecting items and triggers a game over when hitting obstacles.</p>
+
+<h3>Step 8: Building and Running Your Game</h3>
+<p>Once you're happy with your game, it's time to build and test it.</p>
+<ul>
+    <li>Go to 'File' > 'Build Settings' in Unity.</li>
+    <li>Select your target platform (e.g., Windows, Mac, Android).</li>
+    <li>Click 'Build and Run' to build your game and run it on your chosen platform.</li>
+</ul>
+<p>After building, you'll have an executable version of your game to share or test further.</p>
+
+            <!-- Additional steps for obstacles, collectibles, game mechanics, building the game, etc. -->
+        
+            <h3>Conclusion</h3>
+            <p>By following these steps, you've created a simple 2D platformer game. Experiment with adding more features and mechanics to enhance your game.</p>
+        </article>
+        
+    </main>
+    <footer>
+        <p>&copy; 2023 Unity Tutorials. All rights reserved.</p>
+    </footer>
+</body>
+</html>

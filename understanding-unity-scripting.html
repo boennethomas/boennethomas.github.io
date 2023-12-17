@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Unity Scripting</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tutorials.html">Tutorials</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Understanding Unity Scripting</h1>
+        <article>
+            <h2>Basics of Scripting in Unity</h2>
+            <p>Unity uses C# as its scripting language. Scripts in Unity are used to control the behavior of game objects and create game mechanics. In this tutorial, we'll cover the basics of C# scripting in Unity.</p>
+
+            <h3>Creating Your First Script</h3>
+            <p>To create a script in Unity, right-click in the Project panel and select 'Create' > 'C# Script'. Name your script, and then double-click on it to open it in your default code editor.</p>
+
+            <h3>Understanding a Unity Script</h3>
+            <p>A basic Unity script contains two primary methods: <code>Start</code> and <code>Update</code>.</p>
+            <pre><code>// Example Unity Script
+using UnityEngine;
+
+public class ExampleScript : MonoBehaviour {
+    void Start() {
+        // Code here runs once at the start
+        Debug.Log("Hello, Unity!");
+    }
+
+    void Update() {
+        // Code here runs once every frame
+    }
+}</code></pre>
+            <p><code>Start</code> is called once before the first frame update, and <code>Update</code> is called once per frame. You can add your own functions and variables to control objects.</p>
+
+            <h3>Scripting Basic Interactivity</h3>
+            <p>Let's create a simple interaction. We'll move a game object when the player presses a key.</p>
+            <pre><code>public class MoveObject : MonoBehaviour {
+    public float speed = 5.0f;
+    
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            transform.position = transform.position + Vector3.up * speed * Time.deltaTime;
+        }
+    }
+}</code></pre>
+            <p>This script moves the object upwards when the space key is pressed. <code>transform.position</code> controls the object's position in the scene.</p>
+
+        <h3>Adding Components via Script</h3>
+            <p>Scripts can also be used to dynamically add components to game objects. For example:</p>
+            <pre><code>void Start() {
+            gameObject.AddComponent&lt;Rigidbody&gt;();
+            }</code></pre>
+            <p>This code adds a Rigidbody component to the object, enabling physics interactions.</p>
+
+        <h2>Advanced Scripting in Unity</h2>
+            <p>After covering the basics, let's dive into more advanced aspects of Unity scripting. We'll explore how scripts interact with Unity's physics engine, manage user input, and create UI elements programmatically.</p>
+        <h3>Working with Rigidbody</h3>
+            <p>Unity's physics engine allows for realistic motion and collisions. The Rigidbody component adds physics properties to an object.</p>
+            <pre><code>void Start() {
+            Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+            rb.AddForce(Vector3.up * 500);
+            }</code></pre>
+            <p>This script applies an upward force to the object, making it jump.</p>
+        <h3>Handling Keyboard and Mouse Input</h3>
+            <p>Unity provides the Input class to handle user inputs from the keyboard, mouse, or game controllers.</p>
+            <pre><code>void Update() {
+            if (Input.GetMouseButtonDown(0)) {
+                Debug.Log("Left mouse button clicked");
+            }
+
+    float horizontal = Input.GetAxis("Horizontal");
+    float vertical = Input.GetAxis("Vertical");
+    transform.Translate(new Vector3(horizontal, 0, vertical) * speed * Time.deltaTime);
+}</code></pre>
+<p>This script moves the object based on arrow key inputs and logs a message when the left mouse button is clicked.</p>
+<h3>Building UI with Scripts</h3>
+<p>Unity's UI system can be manipulated through scripts. Let's create a simple button dynamically.</p>
+<pre><code>using UnityEngine.UI;
+
+void Start() {
+    GameObject bttonObj = new GameObject("Btton");
+    bttonObj.AddComponent<CanvasRenderer>();
+    Btton btton = bttonObj.AddComponent<Btton>();
+    RectTransform rectTransform = buttonObj.AddComponent<RectTransform>();
+    rectTransform.sizeDelta = new Vector2(100, 50);
+    // Position the button, add text, and define its behavior
+}</code></pre>
+<p>This code snippet creates a new UI button with a specified size and adds it to the scene.</p>
+<h3>Script Communication and Public Methods</h3>
+<p>Scripts can communicate with each other by accessing public methods and variables.</p>
+<pre><code>public class Health : MonoBehaviour {
+    public int health = 100;
+
+    public void TakeDamage(int amount) {
+        health -= amount;
+    }
+}</code></pre>
+<p>Other scripts can reduce the 'health' variable by calling the 'TakeDamage' method.</p>
+<h3>Using Coroutines for Timed Actions</h3>
+<p>Coroutines are powerful tools in Unity for creating delays and managing timed events.</p>
+<pre><code>IEnumerator ExampleCoroutine() {
+    Debug.Log("Coroutine started");
+    yield return new WaitForSeconds(5);
+    Debug.Log("5 seconds passed");
+}
+
+void Start() {
+    StartCoroutine(ExampleCoroutine());
+}</code></pre>
+<p>This coroutine waits for 5 seconds before executing the next line of code.</p>
+<h3>Exploring Beyond the Basics</h3>
+<p>The topics covered here are just the tip of the iceberg. Unity's scripting capabilities are vast and powerful. Experiment with different components, explore Unity's APIs, and try building small projects to solidify your understanding. Don't forget to consult Unity's documentation for detailed explanations and guidelines.</p>
+
+        </article>
+    </main>
+    <footer>
+        <p>&copy; 2023 Unity Tutorials. All rights reserved.</p>
+    </footer>
+</body>
+</html>

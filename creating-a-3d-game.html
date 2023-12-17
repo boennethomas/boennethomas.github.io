@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creating Your First 3D Game in Unity</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tutorials.html">Tutorials</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Creating Your First 3D Game in Unity</h1>
+        <article>
+            <h2>Introduction</h2>
+            <p>Welcome to your first 3D game development tutorial in Unity. We will cover the basics of setting up a 3D environment, creating a player character, scripting basic controls, and implementing game objectives.</p>
+        
+            <h3>Step 1: Setting Up the Environment</h3>
+            <p>Open Unity and create a new 3D project. Name it 'First3DGame'. In the Hierarchy window, right-click and add a Plane object to serve as your ground. Then, create several Cube objects to act as obstacles or platforms in your game world. Arrange them creatively in your scene.</p>
+        
+            <h3>Step 2: Adding the Player</h3>
+            <p>For the player character, you can import a 3D model or use a simple geometric shape like a Sphere or Capsule. Place it above the Plane. Ensure your player object has a Rigidbody component for physics interactions and a Collider component for collision detection.</p>
+        
+            <h3>Step 3: Scripting Player Movement</h3>
+            <p>Create a C# script named 'PlayerController' and attach it to your player object. This script will manage the player's movement and actions.</p>
+            <pre><code>// PlayerController.cs
+            using UnityEngine;
+        
+            public class PlayerController : MonoBehaviour {
+                public float speed = 5f;
+                public float jumpForce = 7f;
+                private Rigidbody rb;
+                private bool isGrounded;
+        
+                void Start() {
+                    rb = GetComponent<Rigidbody>();
+                }
+        
+                void Update() {
+                    float moveHorizontal = Input.GetAxis("Horizontal");
+                    float moveVertical = Input.GetAxis("Vertical");
+        
+                    Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+                    rb.AddForce(movement * speed);
+        
+                    if(Input.GetKeyDown(KeyCode.Space) && isGrounded) {
+                        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                        isGrounded = false;
+                    }
+                }
+        
+                void OnCollisionEnter(Collision other) {
+                    if(other.gameObject.CompareTag("Ground")) {
+                        isGrounded = true;
+                    }
+                }
+            }</code></pre>
+            <p>This script allows the player to move in all directions and jump. The 'isGrounded' flag checks whether the player is on the ground to enable jumping.</p>
+        
+            <h3>Step 4: Creating the Objective</h3>
+            <p>Every game needs an objective. For this simple game, let's make the objective to collect items. Create a Sphere object and name it 'Collectible'. Place several of these in your scene.</p>
+        
+            <h3>Step 5: Implementing the Game Objective</h3>
+            <p>Add a new script to your collectibles to make them interactable. This script can destroy the collectible when the player touches it and increase the player's score.</p>
+            <pre><code>// Collectible.cs
+            using UnityEngine;
+        
+            public class Collectible : MonoBehaviour {
+                void OnTriggerEnter(Collider other) {
+                    if(other.CompareTag("Player")) {
+                        // Increase score
+                        Destroy(gameObject);
+                    }
+                }
+            }</code></pre>
+            <p>Attach this script to each collectible. Make sure each collectible has a Collider set to 'Is Trigger'.</p>
+        
+            <h3>Step 6: Adding UI Elements</h3>
+            <p>Create UI elements to show the player's score. Use Unity's UI system (Canvas, Text) to add a score display. Update this display every time the player collects an item.</p>
+        
+            <h3>Step 7: Building the Game</h3>
+            <p>Once your game mechanics are in place, press the Play button in Unity to test your game. Make adjustments as needed to gameplay, physics, and player controls.</p>
+            <p>When you're satisfied, go to 'File' > 'Build Settings' to build your game. Select your platform and click 'Build' to create an executable version of your game.</p>
+        
+            <h3>Conclusion</h3>
+            <p>Congratulations on completing your first simple 3D game in Unity! This is just the beginning of your game development journey. Experiment with more complex mechanics, different game objectives, and refine your game design skills.</p>
+        </article>
+        
+    </main>
+    <footer>
+        <p>&copy; 2023 Unity Tutorials. All rights reserved.</p>
+    </footer>
+</body>
+</html>

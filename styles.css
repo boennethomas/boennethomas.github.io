@@ -1,0 +1,373 @@
+:root {
+    --primary-color: #61dafb;
+    --text-color: #333;
+    --background-color: #fafafa;
+    --header-bg-color: #20232a;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+header {
+    background-color: #20232a; /* Or use a background image */
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10%;
+}
+
+.logo {
+    font-size: 2em;
+    color: #61dafb; /* Logo color */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style-type: none;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #61dafb;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #4fa8d5; /* Hover effect */
+}
+
+.search-bar {
+    display: flex; /* Aligns the input and button in a row */
+    border: 2px solid var(--primary-color); /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    overflow: hidden; /* Ensures inner elements conform to the border radius */
+}
+
+.search-bar input[type="text"] {
+    flex-grow: 1; /* Allows the input to take up available space */
+    padding: 0.5em; /* Padding inside the input */
+    border: none; /* Removes default border */
+    outline: none; /* Removes the outline on focus */
+    font-size: 1em; /* Match font-size to the rest of the site */
+}
+
+.search-bar button {
+    background-color: var(--primary-color); /* Button background color */
+    color: white; /* Text color for the button */
+    border: none; /* Removes default border */
+    padding: 0.5em 1em; /* Padding inside the button */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.search-bar button:hover {
+    background-color: darken(var(--primary-color), 15%); /* Darker shade on hover */
+}
+
+
+.btn.cta-button {
+    background-color: #ff9800; /* CTA button color */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.btn.cta-button:hover {
+    background-color: #e6891e; /* CTA button hover effect */
+}
+
+
+header nav ul {
+    list-style-type: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+header nav a {
+    color: #61dafb;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+main {
+    padding: 20px;
+    max-width: 1200px; /* Increased width for a wider layout */
+    margin: 20px auto;
+}
+
+h1, h2, h3 {
+    color: #20232a;
+}
+
+article {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+pre, code {
+    background-color: #282c34;
+    color: #9CDCFE;
+    padding: 5px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+}
+
+pre {
+    margin-bottom: 1em;
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #20232a;
+    color: white;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #61dafb;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #4fa8d5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    main {
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .btn {
+        padding: 8px 16px;
+    }
+}
+.tutorials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+
+.tutorial-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Additional Layout Enhancements */
+.intro-section {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.tutorials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* Slider Styles */
+.tutorial-slider {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 20px 0;
+}
+
+.slide {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.tall-card {
+    height: 300px; /* Adjust height as needed */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Tall Cards Enhancement */
+.tutorial-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Ensures the image stays within the card's rounded corners */
+    text-align: center;
+    height: 400px; /* Adjust this value as needed */
+    display: flex;
+    flex-direction: column;
+}
+.tutorial-card img {
+    width: 100%; /* Makes the image stretch to cover the card width */
+    display: block; /* Removes any extra space below the image */
+    border-top-left-radius: 8px; /* Optional: rounds the top corners of the image */
+    border-top-right-radius: 8px; /* Optional: rounds the top corners of the image */
+    height: 200px; /* Fixed height for the image */
+    object-fit: cover;
+}
+.tutorial-card h3, .tutorial-card p {
+    /* Text styles */
+    padding: 0 0px; /* Add padding for the text */
+}
+.tutorial-card:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+    .slide {
+        width: 90%; /* Adjust based on mobile layout */
+    }
+}
+
+.latest-updates, .social-media {
+    padding: 20px 0;
+    text-align: center;
+}
+
+.social-links a {
+    margin: 0 10px;
+    color: #61dafb;
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    text-decoration: underline;
+}
+.featured-assets {
+    padding: 20px 0;
+    text-align: center;
+}
+/* Grid Layout for Assets and Tutorials */
+.assets-grid, .tutorials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust based on content size */
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Flexbox for Individual Cards */
+.asset-card, .tutorial-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distributes space evenly */
+    align-items: center; /* Centers items horizontally */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    text-align: center;
+}
+
+.asset-card img, .tutorial-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.asset-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px; /* Add spacing between image and text */
+}
+
+.asset-card h3 {
+    color: #20232a;
+    margin-top: auto; /* Push text to the bottom */
+}
+
+.asset-card p {
+    color: #666;
+    font-size: 0.9em;
+    margin-top: auto; /* Push text to the bottom */
+}
+
+
+
+.asset-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.asset-card h3 {
+    margin-top: 10px;
+    color: #20232a;
+}
+
+.asset-card p {
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* Main Video Section Styling */
+.main-video {
+    text-align: center;
+    padding: 20px;
+}
+
+.main-video iframe {
+    width: 720px;
+    height: 480px;
+    border: none;
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .assets-grid, .tutorials-grid {
+        grid-template-columns: repeat(2, 1fr); /* Two columns for medium screens */
+    }
+}
+
+@media (max-width: 600px) {
+    .assets-grid, .tutorials-grid {
+        grid-template-columns: 1fr; /* Single column for smaller screens */
+    }
+}
